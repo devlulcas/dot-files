@@ -48,6 +48,8 @@
   "files.eol": "\n",
   "files.insertFinalNewline": true,
   "files.simpleDialog.enable": true,
+  "explorer.compactFolders": false,
+  "explorer.confirmDragAndDrop": false,
 
   // GIT
   "git.autofetch": true,
@@ -89,6 +91,7 @@
   "emmet.showSuggestionsAsSnippets": true,
   "errorLens.enabledDiagnosticLevels": ["warning", "error"],
   "errorLens.excludeBySource": ["cSpell", "Grammarly", "eslint"],
+  "errorLens.enableOnDiffView": false,
 
   // ESLint
   "eslint.codeAction.showDocumentation": {
