@@ -9,22 +9,47 @@
     "Catppuccin.catppuccin-vsc",
   
     // Productivity
+    "GitHub.copilot",
+    "aaron-bond.better-comments",
+    
+    // Lens
     "eamodio.gitlens",
+    "usernamehw.errorlens",
+
+    // Linters and formatters
+    "stylelint.vscode-stylelint",
+    "EditorConfig.EditorConfig",
     "esbenp.prettier-vscode",
     "dbaeumer.vscode-eslint",
-    "usernamehw.errorlens",
+
+    // Spell check
     "streetsidesoftware.code-spell-checker",
     "streetsidesoftware.code-spell-checker-portuguese-brazilian",
-    "EditorConfig.EditorConfig",
-    "ecmel.vscode-html-css",
-    "GitHub.copilot",
-    "stylelint.vscode-stylelint",
+
+     // CSS
     "bradlc.vscode-tailwindcss",
+    "csstools.postcss",
+    "ecmel.vscode-html-css",
 
+    // Astro
+    "astro-build.astro-vscode",
 
-    // Other
-    "bierner.emojisense",
-    "aaron-bond.better-comments",
-    "bierner.markdown-preview-github-styles",
+    // Svelte
+    "svelte.svelte-vscode",
+
+    // PHP
+    "devsense.phptools-vscode",
+
+    // Elixir
+    "jakebecker.elixir-ls",
+
+    // Go
+    "golang.go",
+
+    // Kotlin
+    "fwcd.kotlin",
+
+    // Markdown
+    "bierner.github-markdown-preview",
   ]
 }
