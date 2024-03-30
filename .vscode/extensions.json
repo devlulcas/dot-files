@@ -25,17 +25,12 @@
 
     // CSS
     "bradlc.vscode-tailwindcss", // Tailwind CSS IntelliSense
-    "csstools.postcss", // PostCSS syntax highlighting
-    "ecmel.vscode-html-css", // HTML CSS Support
 
     // Astro
     "astro-build.astro-vscode", // Astro syntax highlighting
 
     // Svelte
     "svelte.svelte-vscode", // Svelte syntax highlighting
-
-    // PHP
-    "devsense.phptools-vscode", // PHP IntelliSense
 
     // Elixir
     "jakebecker.elixir-ls", // ElixirLS
