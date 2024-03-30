@@ -9,6 +9,9 @@
   "editor.fontLigatures": true,
   "window.zoomLevel": 1,
   "editor.accessibilitySupport": "off",
+  "workbench.editor.tabActionLocation": "right",
+  "workbench.activityBar.location": "top",
+  "window.customTitleBarVisibility": "auto",
 
   // Editor
   "editor.cursorSmoothCaretAnimation": "on",
@@ -27,17 +30,13 @@
   "editor.hover.sticky": true,
   "editor.codeActionsOnSave": {
     "source.organizeImports": "explicit",
-    "source.fixAll": "explicit",
-    "source.fixAll.eslint": "explicit",
-    "source.fixAll.stylelint": "explicit",
-    "source.fixAll.prettier": "explicit"
+    "source.fixAll": "explicit"
   },
   "editor.formatOnSave": true,
   "window.dialogStyle": "custom",
   "window.titleBarStyle": "custom",
   "workbench.editor.closeOnFileDelete": true,
   "workbench.editor.highlightModifiedTabs": true,
-  "workbench.editor.tabCloseButton": "right",
   "workbench.editor.tabSizing": "shrink",
   "workbench.editor.limit.enabled": true,
   "workbench.editor.limit.perEditorGroup": true,
@@ -122,10 +121,6 @@
     "json5"
   ],
 
-  // Stylelint
-  "stylelint.enable": true,
-  "stylelint.validate": ["css", "postcss", "scss", "html"],
-
   // Markdown lint
   "markdownlint.config": {
     "default": true
@@ -204,6 +199,5 @@
   },
   "[ocaml]": {
     "editor.defaultFormatter": "ocamllabs.ocaml-platform"
-  },
-  "workbench.editor.tabActionLocation": "right"
+  }
 }

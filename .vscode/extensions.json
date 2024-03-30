@@ -2,7 +2,6 @@
   "recommendations": [
     // Visuals
     "antfu.icons-carbon", // Product icon theme
-    "file-icons.file-icons", // File icon theme
     "teabyii.ayu", // Color theme
 
     // Productivity
@@ -16,7 +15,6 @@
     "usernamehw.errorlens", // ErrorLens
 
     // Linters and formatters
-    "stylelint.vscode-stylelint", // Stylelint for CSS
     "EditorConfig.EditorConfig", // EditorConfig for consistent coding styles
     "esbenp.prettier-vscode", // Prettier for code formatting
     "dbaeumer.vscode-eslint", // ESLint for JavaScript and TypeScript
