@@ -1,55 +1,54 @@
 {
   "recommendations": [
     // Visuals
-    "antfu.icons-carbon",
-    "file-icons.file-icons",
-    "antfu.theme-vitesse",
-    "akamud.vscode-theme-onedark",
-    "akamud.vscode-theme-onelight",
-    "Catppuccin.catppuccin-vsc",
-  
+    "antfu.icons-carbon", // Product icon theme
+    "file-icons.file-icons", // File icon theme
+    "teabyii.ayu", // Color theme
+
     // Productivity
-    "GitHub.copilot",
-    "aaron-bond.better-comments",
-    
+    "GitHub.copilot", // AI pair programming
+    "aaron-bond.better-comments", // Better comments
+    "formulahendry.auto-rename-tag", // Auto rename tag
+    "jannisx11.batch-rename-extension", // Batch rename
+
     // Lens
-    "eamodio.gitlens",
-    "usernamehw.errorlens",
+    "eamodio.gitlens", // GitLens
+    "usernamehw.errorlens", // ErrorLens
 
     // Linters and formatters
-    "stylelint.vscode-stylelint",
-    "EditorConfig.EditorConfig",
-    "esbenp.prettier-vscode",
-    "dbaeumer.vscode-eslint",
+    "stylelint.vscode-stylelint", // Stylelint for CSS
+    "EditorConfig.EditorConfig", // EditorConfig for consistent coding styles
+    "esbenp.prettier-vscode", // Prettier for code formatting
+    "dbaeumer.vscode-eslint", // ESLint for JavaScript and TypeScript
 
     // Spell check
-    "streetsidesoftware.code-spell-checker",
-    "streetsidesoftware.code-spell-checker-portuguese-brazilian",
+    "streetsidesoftware.code-spell-checker", // Spell checker
+    "streetsidesoftware.code-spell-checker-portuguese-brazilian", // Spell checker for pt-BR
 
-     // CSS
-    "bradlc.vscode-tailwindcss",
-    "csstools.postcss",
-    "ecmel.vscode-html-css",
+    // CSS
+    "bradlc.vscode-tailwindcss", // Tailwind CSS IntelliSense
+    "csstools.postcss", // PostCSS syntax highlighting
+    "ecmel.vscode-html-css", // HTML CSS Support
 
     // Astro
-    "astro-build.astro-vscode",
+    "astro-build.astro-vscode", // Astro syntax highlighting
 
     // Svelte
-    "svelte.svelte-vscode",
+    "svelte.svelte-vscode", // Svelte syntax highlighting
 
     // PHP
-    "devsense.phptools-vscode",
+    "devsense.phptools-vscode", // PHP IntelliSense
 
     // Elixir
-    "jakebecker.elixir-ls",
+    "jakebecker.elixir-ls", // ElixirLS
 
     // Go
-    "golang.go",
-
-    // Kotlin
-    "fwcd.kotlin",
+    "golang.go", // Go
 
     // Markdown
-    "bierner.github-markdown-preview",
+    "bierner.github-markdown-preview", // Markdown preview
+
+    // Prisma
+    "prisma.prisma" // Prisma
   ]
 }

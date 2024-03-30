@@ -1,11 +1,11 @@
 {
   // Visuals
-  "workbench.colorTheme": "Vitesse Dark Soft",
-  "workbench.preferredDarkColorTheme": "Vitesse Dark",
-  "workbench.preferredLightColorTheme": "Vitesse Light",
+  "workbench.colorTheme": "Ayu Dark Bordered",
+  "workbench.preferredDarkColorTheme": "Ayu Dark Bordered",
+  "workbench.preferredLightColorTheme": "Ayu Light Bordered",
   "workbench.productIconTheme": "icons-carbon",
   "workbench.iconTheme": "material-icon-theme",
-  "editor.fontFamily": "Fira Code, monospace",
+  "editor.fontFamily": "JetBrains Mono, Fira Code, monospace",
   "editor.fontLigatures": true,
   "window.zoomLevel": 1,
   "editor.accessibilitySupport": "off",
@@ -26,11 +26,11 @@
   "editor.stickyScroll.enabled": true,
   "editor.hover.sticky": true,
   "editor.codeActionsOnSave": {
-    "source.organizeImports": true,
-    "source.fixAll": true,
-    "source.fixAll.eslint": true,
-    "source.fixAll.stylelint": true,
-    "source.fixAll.prettier": true
+    "source.organizeImports": "explicit",
+    "source.fixAll": "explicit",
+    "source.fixAll.eslint": "explicit",
+    "source.fixAll.stylelint": "explicit",
+    "source.fixAll.prettier": "explicit"
   },
   "editor.formatOnSave": true,
   "window.dialogStyle": "custom",
@@ -204,5 +204,6 @@
   },
   "[ocaml]": {
     "editor.defaultFormatter": "ocamllabs.ocaml-platform"
-  }
+  },
+  "workbench.editor.tabActionLocation": "right"
 }
