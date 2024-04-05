@@ -21,6 +21,7 @@ alias vim="nvim"
 alias zshconfig="nvim ~/.zshrc"
 alias ohmyzsh="nvim ~/.oh-my-zsh"
 alias cat="bat"
+alias see="viu"
 alias wcp="wl-copy"
 alias wps="wl-paste"
 
@@ -54,8 +55,20 @@ export REBAR3PATH="$HOME/.cache/rebar3/bin"
 export PATH="$REBAR3PATH:$PATH"
 # end rebar
 
+# turso
+export PATH="$HOME/.turso:$PATH"
+# end turso
+
 # inline bc command + colors
 ibc() {
 	local result=bc<<<"$@"
 	echo -e "\n\033[1;33m$@\033[0m = \033[0;32m$result\033[0m\n"
 }
+
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+. "$HOME/.asdf/asdf.sh"
+
+# append completions to fpath
+fpath=(${ASDF_DIR}/completions $fpath)
+# initialise completions with ZSH's compinit
+autoload -Uz compinit && compinit
