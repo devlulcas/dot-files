@@ -1,4 +1,11 @@
 function myip
+    set -l usage "Usage: myip"
+    set -l desc "Shows the local and external IP addresses."
+
+    if show_help "$usage" "$desc" $argv[1]
+        return
+    end
+
     echo "Local IP:"
     ip -c a | grep -w inet | grep global | awk '{print $2}' | cut -d '/' -f 1
     echo ""
@@ -8,6 +15,13 @@ function myip
 end
 
 function serve
+    set -l usage "Usage: serve [port]"
+    set -l desc "Creates an HTTP server for local basic development using Python. Optional port argument (default: 2309)."
+
+    if show_help "$usage" "$desc" $argv[1]
+        return
+    end
+
     set port 2309
     if set -q argv[1]
         set port $argv[1]

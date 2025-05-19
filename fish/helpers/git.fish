@@ -1,8 +1,9 @@
+function gremcheck
+    set -l usage "Usage: gremcheck <branch-name>"
+    set -l desc "Fetches a specific remote branch from 'origin' and checks it out as a new local branch tracking the remote."
 
-function gremcheck --description "Fetches a specific remote branch from 'origin' and immediately checks it out as a new local branch with the same name, tracking the remote branch" 
-    if test (count $argv) -ne 1
-        echo "Usage: gremcheck <branch-name>" >&2
-        return 1
+    if show_help "$usage" "$desc" $argv[1]
+        return
     end
 
     set branch $argv[1]
@@ -20,10 +21,18 @@ function gremcheck --description "Fetches a specific remote branch from 'origin'
         echo "Error checking out branch '$branch'." >&2
         return 1
     end
+
     echo "Successfully checked out branch '$branch'."
 end
 
-function gundo --description "Undoes the most recent commit, keeping the changes in the staging area"
+function gundo
+    set -l usage "Usage: gundo"
+    set -l desc "Undoes the most recent commit, keeping the changes in the staging area."
+
+    if show_help "$usage" "$desc" $argv[1]
+        return
+    end
+
     echo "Undoing the last commit (keeping changes staged)..."
     git reset --soft HEAD~1
     if test $status -ne 0
@@ -33,32 +42,47 @@ function gundo --description "Undoes the most recent commit, keeping the changes
     echo "Last commit undone. Changes are still staged."
 end
 
-function gclean --description "Deletes local Git branches that have been merged into the current branch, excluding 'master' and 'main', and the currently active branch"
+function gclean
+    set -l usage "Usage: gclean"
+    set -l desc "Deletes local Git branches merged into current branch, excluding 'master', 'main', and the current branch."
+
+    if show_help "$usage" "$desc" $argv[1]
+        return
+    end
+
     echo "Deleting merged local branches (excluding *, master, main)..."
     git branch --merged | grep -vE '^\*|master|main' | xargs -r -n 1 git branch -d
     if test $status -ne 0
         echo "Note: Some branches may not have been deleted if they have unmerged changes." >&2
         # Return 0 even if some branches weren't deleted, unless grep or xargs failed critically
         set cmd_status $status
-        if test $cmd_status -eq 123 # xargs exit status for command not found
-             return 1
-        end
-        if test $cmd_status -eq 127 # grep exit status for command not found
+        if test $cmd_status -eq 123  # xargs command failure
             return 1
         end
-        # Otherwise, assume the non-zero status was from git branch -d on unmerged branches
+        if test $cmd_status -eq 127  # grep command failure
+            return 1
+        end
+        # Otherwise, assume failure is due to unmerged branches - do not treat as error
         return 0
     end
+
     echo "Merged branches cleaned."
 end
 
-function gstashpop --description "Applies the most recent stash and then shows the resulting differences" 
+function gstashpop
+    set -l usage "Usage: gstashpop"
+    set -l desc "Applies the most recent stash and then shows the resulting differences."
+
+    if show_help "$usage" "$desc" $argv[1]
+        return
+    end
+
     echo "Applying the most recent stash and showing diff..."
     git stash pop
     and git diff
     if test $status -ne 0
-         echo "Note: git stash pop may have resulted in conflicts. Please resolve them." >&2
-         return 1
+        echo "Note: git stash pop may have resulted in conflicts. Please resolve them." >&2
+        return 1
     end
     echo "Stash applied."
 end

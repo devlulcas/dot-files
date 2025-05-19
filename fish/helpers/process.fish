@@ -1,17 +1,21 @@
 function psgrep
-    if test (count $argv) -eq 0
-        echo "Usage: psgrep <process-name>"
-        return 1
+    set -l usage "Usage: psgrep <process-name>"
+    set -l desc "Searches for a process by name using a case-insensitive match."
+
+    if show_help "$usage" "$desc" $argv[1]
+        return
     end
+
     set search_term (string join '.*' $argv)
     ps aux | grep -i $search_term | grep -v grep
 end
 
-function pslistening --description "Find the process listening on a specified port"
-    if test (count $argv) -ne 1
-        echo "Usage: process_on_port <port-number>"
-        echo "Example: process_on_port 8080"
-        return 1
+function pslistening
+    set -l usage "Usage: pslistening <port-number>"
+    set -l desc "Finds the process listening on a specified TCP port."
+
+    if show_help "$usage" "$desc" $argv[1]
+        return
     end
 
     set port $argv[1]
