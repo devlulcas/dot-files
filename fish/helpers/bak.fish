@@ -14,15 +14,3 @@ function bak
     cp $original_file $backup_file
     echo "Backed up '$original_file' to '$backup_file'"
 end
-
-function rmbak
-    set -l usage "Usage: rmbak"
-    set -l desc "Removes all backup files (*.bak) from the current directory."
-
-    if show_help "$usage" "$desc" $argv[1]
-        return
-    end
-
-    echo "Removing backup files (*.bak)..."
-    rm *.bak
-end
