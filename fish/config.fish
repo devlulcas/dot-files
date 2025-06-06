@@ -1,3 +1,6 @@
+# Load env
+source ~/.dotfiles/fish/env.fish
+
 # Lib loader (order matters)
 source ~/.dotfiles/fish/lib/show-help.fish
 
