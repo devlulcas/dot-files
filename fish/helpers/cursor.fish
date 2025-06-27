@@ -1,4 +1,11 @@
 function cursor --description "Launch Cursor code editor"
+    set -l usage "Usage: cursor [directory]"
+    set -l desc "Launches Cursor code editor with the current directory or the specified directory."
+
+    if show_help "$usage" "$desc" $argv[1]
+        return
+    end
+
     set -l cursor_app "$HOME/Applications/Cursor/cursor.AppImage"
     
     # Check if the AppImage exists
