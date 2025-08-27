@@ -1,0 +1,7 @@
+[user]
+	email = 70298390+devlulcas@users.noreply.github.com
+	name = devlulcas
+[pull]
+	rebase = false
+[push]
+	autoSetupRemote = true

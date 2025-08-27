@@ -6,7 +6,7 @@ function cursor --description "Launch Cursor code editor"
         return
     end
 
-    set -l cursor_app "$HOME/Applications/Cursor/cursor.AppImage"
+    set -l cursor_app "$CURSOR_CMD"
     
     # Check if the AppImage exists
     if not test -f "$cursor_app"

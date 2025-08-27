@@ -6,7 +6,7 @@ Most of then were taken from other people (especially [antfu](https://www.github
 
 Enjoy!
 
-### Based on
+## Based on
 
 - [antfu](https://www.github.com/antfu)
 - [koekeishiya](https://github.com/koekeishiya/dotfiles/tree/master)

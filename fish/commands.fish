@@ -1,5 +1,5 @@
-function me
-    set -l usage "Usage: me"
+function commands
+    set -l usage "Usage: commands"
     set -l desc "Lists all custom functions from helpers folder and shows their help output."
 
     if show_help "$usage" "$desc" $argv[1]

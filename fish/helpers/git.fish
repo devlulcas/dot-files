@@ -9,16 +9,12 @@ function gremcheck
     set branch $argv[1]
 
     echo "Fetching branch '$branch' from origin..."
+    git config remote.origin.fetch "+refs/heads/*:refs/remotes/origin/*"
     git fetch origin $branch
+    git switch -c $branch origin/$branch
+
     if test $status -ne 0
         echo "Error fetching branch '$branch'." >&2
-        return 1
-    end
-
-    echo "Checking out branch '$branch' as a new local branch..."
-    git checkout -b $branch origin/$branch
-    if test $status -ne 0
-        echo "Error checking out branch '$branch'." >&2
         return 1
     end
 
