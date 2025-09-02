@@ -1,3 +1,5 @@
+#!/usr/bin/env fish
+
 # Directories
 set -gx WORK_DIR "$HOME/Work"
 set -gx CODING_DIR "$HOME/Coding"
@@ -23,8 +25,11 @@ source "$HOME/.cargo/env.fish"
 set -gx GOPATH "$APPS_DIR/go"
 
 # Odin
-set -g ODIN_INSTALL_DIR "$APPS_DIR/Odin"
+set -gx ODIN_INSTALL_DIR "$APPS_DIR/Odin"
 fish_add_path "$ODIN_INSTALL_DIR"
+
+Ghostty
+fish_add_path "$HOME/.local/bin"
 
 # PNPM
 set -gx PNPM_HOME "$HOME/.local/share/pnpm"

@@ -1,3 +1,5 @@
+#!/usr/bin/env fish
+
 function serve
     set -l usage "Usage: serve [port]"
     set -l desc "Creates an HTTP server for local basic development using Python. Optional port argument (default: 2309)."

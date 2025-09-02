@@ -1,3 +1,5 @@
+#!/usr/bin/env fish
+
 function bak
     set -l usage "Usage: bak <file>"
     set -l desc "Creates a copy of the file for backup with datetime information."

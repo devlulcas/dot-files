@@ -1,3 +1,5 @@
+#!/usr/bin/env fish
+
 function rmbak
     set -l usage "Usage: rmbak"
     set -l desc "Removes all backup files (*.bak) from the current directory."

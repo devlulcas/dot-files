@@ -1,3 +1,5 @@
+#!/usr/bin/env fish
+
 function mkcd
     set -l usage "Usage: mkcd <directory-name>"
     set -l desc "Creates a directory (including parent folders if needed) and changes into it."

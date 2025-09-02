@@ -1,3 +1,5 @@
+#!/usr/bin/env fish
+
 function dockerclean
     set -l usage "Usage: dockerclean"
     set -l desc "Removes all unused Docker data (containers, images, networks, build cache, volumes) forcefully."

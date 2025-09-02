@@ -1,3 +1,5 @@
+#!/usr/bin/env fish
+
 source ~/.dotfiles/fish/lib/gocode-complete.fish
 
 function gocode

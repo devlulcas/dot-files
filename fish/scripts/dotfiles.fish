@@ -1,3 +1,5 @@
+#!/usr/bin/env fish
+
 function dotfiles
     set -l usage "Usage: dotfiles"
     set -l desc "Opens the dotfiles project in teh default editor."

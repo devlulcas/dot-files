@@ -1,3 +1,5 @@
+#!/usr/bin/env fish
+
 function extract
     set -l usage "Usage: extract <file>"
     set -l desc "Extracts a compressed file based on its extension (e.g. .tar.gz, .zip, .7z)."

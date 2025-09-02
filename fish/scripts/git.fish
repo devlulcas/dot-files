@@ -1,3 +1,5 @@
+#!/usr/bin/env fish
+
 function gremcheck
     set -l usage "Usage: gremcheck <branch-name>"
     set -l desc "Fetches a specific remote branch from 'origin' and checks it out as a new local branch tracking the remote."
@@ -52,10 +54,10 @@ function gclean
         echo "Note: Some branches may not have been deleted if they have unmerged changes." >&2
         # Return 0 even if some branches weren't deleted, unless grep or xargs failed critically
         set cmd_status $status
-        if test $cmd_status -eq 123  # xargs command failure
+        if test $cmd_status -eq 123 # xargs command failure
             return 1
         end
-        if test $cmd_status -eq 127  # grep command failure
+        if test $cmd_status -eq 127 # grep command failure
             return 1
         end
         # Otherwise, assume failure is due to unmerged branches - do not treat as error

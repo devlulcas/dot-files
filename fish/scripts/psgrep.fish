@@ -1,3 +1,5 @@
+#!/usr/bin/env fish
+
 function psgrep
     set -l usage "Usage: psgrep <process-name>"
     set -l desc "Searches for a process by name using a case-insensitive match."

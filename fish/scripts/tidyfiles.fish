@@ -1,3 +1,5 @@
+#!/usr/bin/env fish
+
 function tidyfiles
     set -l usage "Usage: tidyfiles [--dry-run|-n] [--verbose|-v] [--all|-a]"
     set -l desc "Organizes items in the current directory into Images, Music, Videos, PDFs, Texts, Markdown, Code, SubDirs, and Unknown. By default, hidden files/dirs are skipped (use --all to include)."

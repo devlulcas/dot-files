@@ -1,3 +1,5 @@
+#!/usr/bin/env fish
+
 function myip
     set -l usage "Usage: myip"
     set -l desc "Shows the local and external IP addresses."
@@ -7,7 +9,7 @@ function myip
     end
 
     echo "Local IP:"
-    ip -c a | grep -w inet | grep global | awk '{print $2}' | cut -d '/' -f 1
+    ip -c a | grep -w inet | grep global | awk '{print $2}' | cut -d / -f 1
     echo ""
     echo "External IP:"
     curl ifconfig.me

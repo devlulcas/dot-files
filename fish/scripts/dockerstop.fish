@@ -1,3 +1,5 @@
+#!/usr/bin/env fish
+
 function dockerstop
     set -l usage "Usage: dockerstop"
     set -l desc "Stops all running Docker containers."

@@ -1,3 +1,5 @@
+#!/usr/bin/env fish
+
 function cursor --description "Launch Cursor code editor"
     set -l usage "Usage: cursor [directory]"
     set -l desc "Launches Cursor code editor with the current directory or the specified directory."
@@ -7,19 +9,19 @@ function cursor --description "Launch Cursor code editor"
     end
 
     set -l cursor_app "$CURSOR_CMD"
-    
+
     # Check if the AppImage exists
     if not test -f "$cursor_app"
         echo "Error: Cursor AppImage not found at $cursor_app"
         return 1
     end
-    
+
     # Make sure it's executable
     if not test -x "$cursor_app"
         echo "Making Cursor AppImage executable..."
         chmod +x "$cursor_app"
     end
-    
+
     # Launch Cursor with arguments
     if test (count $argv) -eq 0
         # No arguments - open current directory
