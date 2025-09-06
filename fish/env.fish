@@ -28,7 +28,7 @@ set -gx GOPATH "$APPS_DIR/go"
 set -gx ODIN_INSTALL_DIR "$APPS_DIR/Odin"
 fish_add_path "$ODIN_INSTALL_DIR"
 
-Ghostty
+# Ghostty
 fish_add_path "$HOME/.local/bin"
 
 # PNPM

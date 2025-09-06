@@ -1,4 +1,4 @@
-function fakePhone() {
+function make() {
   const areaCodes = [
     `11`,
     `21`,
@@ -20,4 +20,4 @@ function fakePhone() {
   return areaCode + firstDigit + remainingDigits;
 }
 
-return fakePhone();
+return make();

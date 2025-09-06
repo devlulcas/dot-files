@@ -1,5 +1,5 @@
-function fakeCep() {
-  const validCeps = [
+function make() {
+  const brazilianZipCodes = [
     `01310100`, // São Paulo - Paulista Avenue
     `20040020`, // Rio de Janeiro - Copacabana
     `30112000`, // Belo Horizonte - Centro
@@ -17,7 +17,9 @@ function fakeCep() {
     `49010000`, // Aracaju - Centro
   ];
 
-  return validCeps[Math.floor(Math.random() * validCeps.length)];
+  return brazilianZipCodes[
+    Math.floor(Math.random() * brazilianZipCodes.length)
+  ];
 }
 
-return fakeCep();
+return make();

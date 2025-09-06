@@ -1,4 +1,4 @@
-function fakeEmail() {
+function make() {
   const domains = [
     `gmail.com`,
     `yahoo.com`,
@@ -40,4 +40,4 @@ function fakeEmail() {
   return `${name}.${surname}${number}@${domain}`;
 }
 
-return fakeEmail();
+return make();

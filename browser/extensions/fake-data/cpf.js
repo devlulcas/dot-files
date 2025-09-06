@@ -1,4 +1,4 @@
-function fakeCpf() {
+function make() {
   let cpf = [];
   for (let i = 0; i < 9; i++) {
     cpf.push(Math.floor(Math.random() * 10));
@@ -20,4 +20,4 @@ function fakeCpf() {
   return cpf.join(``);
 }
 
-return fakeCpf();
+return make();
