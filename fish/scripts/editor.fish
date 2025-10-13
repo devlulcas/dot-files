@@ -23,7 +23,7 @@ function open_editor
                     echo "$FALLBACK_EDITOR"
                 end
             case nvim
-                echo "$NVIM_CMD"
+                echo nvim
             case "*"
                 echo "$FALLBACK_EDITOR"
         end

@@ -16,3 +16,6 @@ end
 
 # Commands
 source ~/.dotfiles/fish/commands.fish
+
+# Greetings
+set -U fish_greeting
