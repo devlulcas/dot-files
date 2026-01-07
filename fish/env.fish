@@ -9,9 +9,6 @@ set -gx APPS_DIR "$HOME/Applications"
 set -gx GIT_EDITOR nvim
 set -gx GIT_PAGER nvim
 
-# Cursor
-set -gx CURSOR_CMD (ls $APPS_DIR/cursor*.AppImage | head -n 1)
-
 # Editor
 set -gx PREFERRED_EDITOR cursor
 set -gx FALLBACK_EDITOR code
