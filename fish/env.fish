@@ -15,7 +15,9 @@ set -gx FALLBACK_EDITOR code
 set -gx TERMINAL_EDITOR nvim
 
 # Rust
-source "$HOME/.cargo/env.fish"
+if test -e "$HOME/.cargo/env.fish"
+    source "$HOME/.cargo/env.fish"
+end
 
 # Go
 set -gx GOPATH "$APPS_DIR/Go"

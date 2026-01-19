@@ -1,3 +1,7 @@
-font-family = Iosevka
+command = /usr/bin/fish
+click-repeat-interval = 500
+gtk-single-instance = false
+auto-update-channel = stable
+font-family = Agave
 window-padding-x = 4
 shell-integration = fish
