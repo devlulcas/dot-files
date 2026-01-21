@@ -1,10 +1,13 @@
 #!/usr/bin/env fish
 
-function gremcheck
-    set -l usage "Usage: gremcheck <branch-name>"
-    set -l desc "Fetches a specific remote branch from 'origin' and checks it out as a new local branch tracking the remote."
+set -l gremcheck_desc "Fetches a specific remote branch from 'origin' and checks it out as a new local branch tracking the remote."
+function gremcheck --description $gremcheck_desc
+    argparse 'h/help' -- $argv or return
 
-    if show_help "$usage" "$desc" $argv[1]
+    if set -ql _flag_help
+        help-view \
+            --usage="gremcheck <branch-name>" \
+            --description=$gremcheck_desc
         return
     end
 
@@ -23,11 +26,14 @@ function gremcheck
     echo "Successfully checked out branch '$branch'."
 end
 
-function gundo
-    set -l usage "Usage: gundo"
-    set -l desc "Undoes the most recent commit, keeping the changes in the staging area."
+set -l gundo_desc "Undoes the most recent commit, keeping the changes in the staging area."
+function gundo --description $gundo_desc
+    argparse 'h/help' -- $argv or return
 
-    if show_help "$usage" "$desc" $argv[1]
+    if set -ql _flag_help
+        help-view \
+            --usage="gundo" \
+            --description=$gundo_desc
         return
     end
 
@@ -40,11 +46,14 @@ function gundo
     echo "Last commit undone. Changes are still staged."
 end
 
-function gclean
-    set -l usage "Usage: gclean"
-    set -l desc "Deletes local Git branches merged into current branch, excluding 'master', 'main', and the current branch."
+set -l gclean_desc "Deletes local Git branches merged into current branch, excluding 'master', 'main', and the current branch."
+function gclean --description $gclean_desc
+    argparse 'h/help' -- $argv or return
 
-    if show_help "$usage" "$desc" $argv[1]
+    if set -ql _flag_help
+        help-view \
+            --usage="gclean" \
+            --description=$gclean_desc
         return
     end
 
@@ -67,11 +76,14 @@ function gclean
     echo "Merged branches cleaned."
 end
 
-function gstashpop
-    set -l usage "Usage: gstashpop"
-    set -l desc "Applies the most recent stash and then shows the resulting differences."
+set -l gstashpop_desc "Applies the most recent stash and then shows the resulting differences."
+function gstashpop --description $gstashpop_desc
+    argparse 'h/help' -- $argv or return
 
-    if show_help "$usage" "$desc" $argv[1]
+    if set -ql _flag_help
+        help-view \
+            --usage="gstashpop" \
+            --description=$gstashpop_desc
         return
     end
 

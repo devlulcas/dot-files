@@ -1,7 +1,17 @@
 #!/usr/bin/env fish
 # Dependencies: tesseract wl-clipboard
 
-function ocr
+set -l ocr_desc "Extracts text from the last screenshot and copies it to the clipboard."
+function ocr --description $ocr_desc
+    argparse 'h/help' -- $argv or return
+
+    if set -ql _flag_help
+        help-view \
+            --usage="ocr" \
+            --description=$ocr_desc
+        return
+    end
+
       set -l OCR (mktemp)
       set -l icon /usr/share/icons/Adwaita/symbolic/actions/edit-copy-symbolic.svg
       set -l title "OCR Script"

@@ -1,14 +1,24 @@
 {
   "version": "0.2",
   "words": [
+    "argparse",
     "brazilian",
+    "btop",
     "devlulcas",
+    "dockutils",
     "gclean",
+    "ghostty",
     "Ghostty",
     "gocode",
     "GOPATH",
     "gremcheck",
     "gstashpop",
-    "gundo"
+    "gundo",
+    "inet",
+    "mkcd",
+    "rmbak",
+    "tesseract",
+    "tulnp",
+    "watchmedo"
   ]
 }

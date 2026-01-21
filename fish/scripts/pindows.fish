@@ -1,10 +1,13 @@
 #!/usr/bin/env fish
 
-function pindows
-    set -l usage "Usage: pindows"
-    set -l desc "Opens WinBoat browser window"
+set -l pindows_desc "Opens WinBoat browser window."
+function pindows --description $pindows_desc
+    argparse 'h/help' -- $argv or return
 
-    if show_help "$usage" "$desc" $argv[1]
+    if set -ql _flag_help
+        help-view \
+            --usage="pindows" \
+            --description=$pindows_desc
         return
     end
 

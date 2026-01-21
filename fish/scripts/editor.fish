@@ -1,18 +1,21 @@
 #!/usr/bin/env fish
 
-function open_editor
-    set -l usage "Usage: open_editor [directory]"
-    set -l desc "Opens the preferred editor with the current directory or the specified directory."
+set -l code_editor_desc "Opens the preferred editor with the current directory or the specified directory."
+function code-editor --description $code_editor_desc
+    argparse 'h/help' -- $argv
 
-    if show_help "$usage" "$desc" $argv[1]
+    if set -ql _flag_help
+        help-view \
+            --usage="code-editor [directory]" \
+            --description=$code_editor_desc
         return
     end
-
-    function get_editor_cmd
+    
+    function get-editor-cmd
         switch $PREFERRED_EDITOR
             case cursor
-                if test -x "$CURSOR_CMD"
-                    echo "$CURSOR_CMD"
+                if  command -v cursor >/dev/null
+                    echo cursor
                 else
                     echo "$FALLBACK_EDITOR"
                 end
@@ -23,13 +26,17 @@ function open_editor
                     echo "$FALLBACK_EDITOR"
                 end
             case nvim
-                echo nvim
+                if command -v nvim >/dev/null
+                    echo nvim
+                else
+                    echo "$FALLBACK_EDITOR"
+                end
             case "*"
                 echo "$FALLBACK_EDITOR"
         end
     end
 
-    set -l editor_cmd (get_editor_cmd)
+    set -l editor_cmd (get-editor-cmd)
 
     if test (count $argv) -eq 0
         $editor_cmd . &>/dev/null &

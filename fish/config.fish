@@ -7,15 +7,15 @@ source ~/.dotfiles/fish/alias.fish
 source ~/.dotfiles/fish/env.fish
 
 # Lib loader (order matters)
-source ~/.dotfiles/fish/lib/show-help.fish
+source ~/.dotfiles/fish/lib/help-view.fish
 
-# Now source all other scripts that depend on show_help
+# Now source all other scripts that depend on show-help
 for f in ~/.dotfiles/fish/scripts/*.fish
     source $f
 end
 
 # Commands
-source ~/.dotfiles/fish/commands.fish
+source ~/.dotfiles/fish/scripts/list-commands.fish
 
 # Greetings
 set -U fish_greeting

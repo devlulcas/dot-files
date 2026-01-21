@@ -1,10 +1,13 @@
 #!/usr/bin/env fish
 
-function rmbak
-    set -l usage "Usage: rmbak"
-    set -l desc "Removes all backup files (*.bak) from the current directory."
+set -l rmbak_desc "Removes all backup files (*.bak) from the current directory."
+function rmbak --description $rmbak_desc
+    argparse 'h/help' -- $argv or return
 
-    if show_help "$usage" "$desc" $argv[1]
+    if set -ql _flag_help
+        help-view \
+            --usage="rmbak" \
+            --description=$rmbak_desc
         return
     end
 

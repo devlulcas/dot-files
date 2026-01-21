@@ -2,11 +2,14 @@
 
 source ~/.dotfiles/fish/lib/gocode-complete.fish
 
-function gocode
-    set -l usage "Usage: gocode <project-name>"
-    set -l desc "Searches for a project folder in ~/Work or ~/Coding and opens it in the default editor."
+set -l gocode_desc "Searches for a project folder in ~/Work or ~/Coding and opens it in the preferred editor."
+function gocode --description $gocode_desc
+    argparse 'h/help' -- $argv or return
 
-    if show_help "$usage" "$desc" $argv[1]
+    if set -ql _flag_help
+        help-view \
+            --usage="gocode <project-name>" \
+            --description=$gocode_desc
         return
     end
 
@@ -23,7 +26,7 @@ function gocode
         return 1
     end
 
-    open_editor $matches[1]
+    code-editor $matches[1]
 end
 
 # Completion for gocode

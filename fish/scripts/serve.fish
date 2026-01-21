@@ -1,10 +1,13 @@
 #!/usr/bin/env fish
 
-function serve
-    set -l usage "Usage: serve [port]"
-    set -l desc "Creates an HTTP server for local basic development using Python. Optional port argument (default: 2309)."
+set -l serve_desc "Creates an HTTP server for local basic development using Python. Optional port argument (default: 2309)."
+function serve --description $serve_desc
+    argparse 'h/help' -- $argv or return
 
-    if show_help "$usage" "$desc" $argv[1]
+    if set -ql _flag_help
+        help-view \
+            --usage="serve [port]" \
+            --description=$serve_desc
         return
     end
 
@@ -19,7 +22,7 @@ function serve
     python3 -m http.server $port --directory $dir &
     set pid $last_pid
 
-    function cleanup --on-event fish_exit
+    function __cleanup --on-event fish_exit
         kill $pid >/dev/null 2>&1
     end
 

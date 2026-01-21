@@ -1,10 +1,13 @@
 #!/usr/bin/env fish
 
-function extract
-    set -l usage "Usage: extract <file>"
-    set -l desc "Extracts a compressed file based on its extension (e.g. .tar.gz, .zip, .7z)."
+set -l extract_desc "Extracts a compressed file based on its extension (e.g. .tar.gz, .zip, .7z)."
+function extract --description $extract_desc
+    argparse 'h/help' -- $argv or return
 
-    if show_help "$usage" "$desc" $argv[1]
+    if set -ql _flag_help
+        help-view \
+            --usage="extract <file>" \
+            --description=$extract_desc
         return
     end
 

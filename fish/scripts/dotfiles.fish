@@ -1,12 +1,15 @@
 #!/usr/bin/env fish
 
-function dotfiles
-    set -l usage "Usage: dotfiles"
-    set -l desc "Opens the dotfiles project in teh default editor."
+set -l dotfiles_desc "Opens the dotfiles project in the preferred editor"
+function dotfiles --description $dotfiles_desc
+    argparse 'h/help' -- $argv or return
 
-    if show_help "$usage" "$desc" $argv[1]
+    if set -ql _flag_help
+        help-view \
+            --usage="dotfiles" \
+            --description=$dotfiles_desc
         return
     end
 
-    open_editor ~/.dotfiles
+    code-editor ~/.dotfiles
 end

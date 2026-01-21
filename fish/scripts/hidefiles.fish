@@ -1,10 +1,13 @@
 #!/usr/bin/env fish
 
-function hidefiles
-    set -l usage "Usage: hidefiles <directory-name>"
-    set -l desc "Creates a directory (including parent folders if needed) and changes into it."
+set -l hidefiles_desc "Hides files in a directory by renaming them to include a dot (.) prefix. Hidden files are skipped by default."
+function hidefiles --description $hidefiles_desc
+    argparse 'h/help' -- $argv or return
 
-    if show_help "$usage" "$desc" $argv[1]
+    if set -ql _flag_help
+        help-view \
+            --usage="hidefiles <directory>" \
+            --description=$hidefiles_desc
         return
     end
 

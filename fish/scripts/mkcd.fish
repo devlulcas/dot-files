@@ -1,10 +1,13 @@
 #!/usr/bin/env fish
 
-function mkcd
-    set -l usage "Usage: mkcd <directory-name>"
-    set -l desc "Creates a directory (including parent folders if needed) and changes into it."
+set -l mkcd_desc "Creates a directory (including parent folders if needed) and changes into it."
+function mkcd --description $mkcd_desc
+    argparse 'h/help' -- $argv or return
 
-    if show_help "$usage" "$desc" $argv[1]
+    if set -ql _flag_help
+        help-view \
+            --usage="mkcd <directory-name>" \
+            --description=$mkcd_desc
         return
     end
 
