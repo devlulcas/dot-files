@@ -5,3 +5,4 @@ auto-update-channel = stable
 font-family = Agave
 window-padding-x = 4
 shell-integration = fish
+theme = one-half-dark

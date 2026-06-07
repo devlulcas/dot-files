@@ -75,24 +75,3 @@ function gclean --description $gclean_desc
 
     echo "Merged branches cleaned."
 end
-
-set -l gstashpop_desc "Applies the most recent stash and then shows the resulting differences."
-function gstashpop --description $gstashpop_desc
-    argparse 'h/help' -- $argv or return
-
-    if set -ql _flag_help
-        help-view \
-            --usage="gstashpop" \
-            --description=$gstashpop_desc
-        return
-    end
-
-    echo "Applying the most recent stash and showing diff..."
-    git stash pop
-    and git diff
-    if test $status -ne 0
-        echo "Note: git stash pop may have resulted in conflicts. Please resolve them." >&2
-        return 1
-    end
-    echo "Stash applied."
-end

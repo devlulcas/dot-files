@@ -1,7 +1,5 @@
 #!/usr/bin/env fish
 
-source ~/.dotfiles/fish/lib/gocode-complete.fish
-
 set -l gocode_desc "Searches for a project folder in ~/Work or ~/Coding and opens it in the preferred editor."
 function gocode --description $gocode_desc
     argparse 'h/help' -- $argv or return
@@ -29,5 +27,11 @@ function gocode --description $gocode_desc
     code-editor $matches[1]
 end
 
+function __gocode_complete
+    python3 -S ~/.dotfiles/fish/scripts/gocode-complete.py \
+        --coding-dir "$CODING_DIR" \
+        --work-dir "$WORK_DIR" 2>/dev/null
+end
+
 # Completion for gocode
-complete -c gocode -f -a "(__gocode_complete)"
+complete -c gocode -f --keep-order -a "(__gocode_complete)"

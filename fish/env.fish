@@ -1,19 +1,5 @@
 #!/usr/bin/env fish
 
-# Directories
-set -gx WORK_DIR "$HOME/Work"
-set -gx CODING_DIR "$HOME/Coding"
-set -gx APPS_DIR "$HOME/Applications"
-
-# Git
-set -gx GIT_EDITOR nvim
-set -gx GIT_PAGER nvim
-
-# Editor
-set -gx PREFERRED_EDITOR cursor
-set -gx FALLBACK_EDITOR code
-set -gx TERMINAL_EDITOR nvim
-
 # Rust
 if test -e "$HOME/.cargo/env.fish"
     source "$HOME/.cargo/env.fish"
@@ -30,3 +16,21 @@ set -gx PNPM_HOME "$HOME/.local/share/pnpm"
 if not string match -q -- $PNPM_HOME $PATH
   set -gx PATH "$PNPM_HOME" $PATH
 end
+
+# ASDF
+if test -z $ASDF_DATA_DIR
+    set _asdf_shims "$HOME/.asdf/shims"
+else
+    set _asdf_shims "$ASDF_DATA_DIR/shims"
+end
+
+if not contains $_asdf_shims $PATH
+    set -gx --prepend PATH $_asdf_shims
+end
+set --erase _asdf_shims
+
+# OPEN CODE
+fish_add_path "$HOME/.opencode/bin"
+
+# BIOME
+fish_add_path "$APPS_DIR/RawBin/biome/bin"
