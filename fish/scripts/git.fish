@@ -7,19 +7,23 @@ function gremcheck --description $gremcheck_desc
     if set -ql _flag_help
         help-view \
             --usage="gremcheck <branch-name>" \
-            --description=$gremcheck_desc
+            --description=$gremcheck_desc \
+            --dependency="git" \
+            --example="gremcheck feature/new-flow"
         return
     end
 
-    set branch $argv[1]
+    __require_git_repo or return
+    __require_arg "branch-name" "$argv[1]" or return
+
+    set -l branch $argv[1]
 
     echo "Fetching branch '$branch' from origin..."
     git config remote.origin.fetch "+refs/heads/*:refs/remotes/origin/*"
-    git fetch origin $branch
-    git switch -c $branch origin/$branch
-
-    if test $status -ne 0
-        echo "Error fetching branch '$branch'." >&2
+    and git fetch origin "$branch"
+    and git switch -c "$branch" "origin/$branch"
+    or begin
+        __error "Error fetching branch '$branch'."
         return 1
     end
 
@@ -33,14 +37,22 @@ function gundo --description $gundo_desc
     if set -ql _flag_help
         help-view \
             --usage="gundo" \
-            --description=$gundo_desc
+            --description=$gundo_desc \
+            --dependency="git"
         return
+    end
+
+    __require_git_repo or return
+    git rev-parse --verify HEAD~1 >/dev/null 2>/dev/null
+    or begin
+        __error "HEAD~1 does not exist. There is no previous commit to reset to."
+        return 1
     end
 
     echo "Undoing the last commit (keeping changes staged)..."
     git reset --soft HEAD~1
     if test $status -ne 0
-        echo "Error undoing the last commit." >&2
+        __error "Error undoing the last commit."
         return 1
     end
     echo "Last commit undone. Changes are still staged."
@@ -53,24 +65,27 @@ function gclean --description $gclean_desc
     if set -ql _flag_help
         help-view \
             --usage="gclean" \
-            --description=$gclean_desc
+            --description=$gclean_desc \
+            --dependency="git"
         return
     end
 
+    __require_git_repo or return
+
     echo "Deleting merged local branches (excluding *, master, main)..."
-    git branch --merged | grep -vE '^\*|master|main' | xargs -r -n 1 git branch -d
-    if test $status -ne 0
-        echo "Note: Some branches may not have been deleted if they have unmerged changes." >&2
-        # Return 0 even if some branches weren't deleted, unless grep or xargs failed critically
-        set cmd_status $status
-        if test $cmd_status -eq 123 # xargs command failure
-            return 1
-        end
-        if test $cmd_status -eq 127 # grep command failure
-            return 1
-        end
-        # Otherwise, assume failure is due to unmerged branches - do not treat as error
+    set -l branches (git branch --merged | string trim | string match -rv '^(\* )?(main|master)$' | string match -rv '^\*')
+
+    if test (count $branches) -eq 0
+        echo "No merged local branches to delete."
         return 0
+    end
+
+    for branch in $branches
+        git branch -d "$branch"
+        if test $status -ne 0
+            __error "Could not delete branch '$branch'. It may have unmerged changes."
+            return 1
+        end
     end
 
     echo "Merged branches cleaned."

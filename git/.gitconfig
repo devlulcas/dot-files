@@ -7,6 +7,16 @@
 	autoSetupRemote = true
 [init]
 	defaultBranch = main
+[rerere]
+	enabled = true
+[fetch]
+	prune = true
+[diff]
+	colorMoved = default
+[merge]
+	conflictstyle = zdiff3
+[column]
+	ui = auto
 [filter "lfs"]
 	clean = git-lfs clean -- %f
 	smudge = git-lfs smudge -- %f

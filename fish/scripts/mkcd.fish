@@ -7,10 +7,13 @@ function mkcd --description $mkcd_desc
     if set -ql _flag_help
         help-view \
             --usage="mkcd <directory-name>" \
-            --description=$mkcd_desc
+            --description=$mkcd_desc \
+            --example="mkcd ~/Coding/new-project"
         return
     end
 
-    mkdir -p $argv[1]
-    and cd $argv[1]
+    __require_arg "directory-name" "$argv[1]" or return
+
+    mkdir -p "$argv[1]"
+    and cd "$argv[1]"
 end

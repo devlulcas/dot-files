@@ -5,19 +5,28 @@ function make() {
   const digits = `0123456789`;
   const symbols = `!@#$%^&*()-_=+[]{}`;
   const all = lowers + uppers + digits + symbols;
+  const randomIndex = (max) => {
+    if (globalThis.crypto?.getRandomValues) {
+      const values = new Uint32Array(1);
+      globalThis.crypto.getRandomValues(values);
+      return values[0] % max;
+    }
+
+    return Math.floor(Math.random() * max);
+  };
 
   let passwordChars = [];
-  passwordChars.push(lowers[Math.floor(Math.random() * lowers.length)]);
-  passwordChars.push(uppers[Math.floor(Math.random() * uppers.length)]);
-  passwordChars.push(digits[Math.floor(Math.random() * digits.length)]);
-  passwordChars.push(symbols[Math.floor(Math.random() * symbols.length)]);
+  passwordChars.push(lowers[randomIndex(lowers.length)]);
+  passwordChars.push(uppers[randomIndex(uppers.length)]);
+  passwordChars.push(digits[randomIndex(digits.length)]);
+  passwordChars.push(symbols[randomIndex(symbols.length)]);
 
   for (let i = passwordChars.length; i < length; i++) {
-    passwordChars.push(all[Math.floor(Math.random() * all.length)]);
+    passwordChars.push(all[randomIndex(all.length)]);
   }
 
   for (let i = passwordChars.length - 1; i > 0; i--) {
-    const j = Math.floor(Math.random() * (i + 1));
+    const j = randomIndex(i + 1);
     const temp = passwordChars[i];
     passwordChars[i] = passwordChars[j];
     passwordChars[j] = temp;

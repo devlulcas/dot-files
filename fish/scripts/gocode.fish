@@ -7,21 +7,37 @@ function gocode --description $gocode_desc
     if set -ql _flag_help
         help-view \
             --usage="gocode <project-name>" \
-            --description=$gocode_desc
+            --description=$gocode_desc \
+            --example="gocode api" \
+            --example="gocode dotfiles"
         return
     end
 
+    __require_arg "project-name" "$argv[1]" or return
+
     # Try Work first
-    set matches (find $WORK_DIR -type d -mindepth 2 -maxdepth 2 -name "$argv[1]" 2>/dev/null)
+    set -l matches
+    if test -d "$WORK_DIR"
+        set matches (find "$WORK_DIR" -type d -mindepth 2 -maxdepth 2 -name "$argv[1]" 2>/dev/null)
+    end
 
     if test (count $matches) -eq 0
         # Try Coding directory
-        set matches (find $CODING_DIR -maxdepth 1 -type d -name "$argv[1]" 2>/dev/null)
+        if test -d "$CODING_DIR"
+            set matches (find "$CODING_DIR" -maxdepth 1 -type d -name "$argv[1]" 2>/dev/null)
+        end
     end
 
     if test (count $matches) -eq 0
         echo "Project '$argv[1]' not found in $WORK_DIR or $CODING_DIR"
         return 1
+    end
+
+    if test (count $matches) -gt 1
+        echo "Multiple projects found. Opening the first match:"
+        for match in $matches
+            echo "  $match"
+        end
     end
 
     code-editor $matches[1]
@@ -71,7 +87,10 @@ function __gocode_complete
     for project in (printf "%s\n" $projects | sort --numeric-sort --reverse)
         set -l parts (string split $sep "$project")
         set -l name $parts[2]
-        set -l parent $parts[3]
+        set -l parent ""
+        if test (count $parts) -gt 2
+            set parent $parts[3]
+        end
         set -l time_str (__gocode_relative_time $parts[1])
 
         if test -n "$parent"

@@ -2,47 +2,49 @@
 
 set -l code_editor_desc "Opens the preferred editor with the current directory or the specified directory."
 function code-editor --description $code_editor_desc
-    argparse 'h/help' -- $argv
+    argparse 'h/help' 'w/wait' -- $argv or return
 
     if set -ql _flag_help
         help-view \
-            --usage="code-editor [directory]" \
-            --description=$code_editor_desc
+            --usage="code-editor [--wait] [path...]" \
+            --description=$code_editor_desc \
+            --opt="w/wait Wait for the editor process to close when supported." \
+            --example="code-editor" \
+            --example="code-editor --wait README.md"
         return
     end
-    
-    function get-editor-cmd
-        switch $PREFERRED_EDITOR
-            case cursor
-                if  command -v cursor >/dev/null
-                    echo cursor
-                else
-                    echo "$FALLBACK_EDITOR"
-                end
-            case code
-                if command -v code >/dev/null
-                    echo code
-                else
-                    echo "$FALLBACK_EDITOR"
-                end
-            case nvim
-                if command -v nvim >/dev/null
-                    echo nvim
-                else
-                    echo "$FALLBACK_EDITOR"
-                end
-            case "*"
-                echo "$FALLBACK_EDITOR"
+
+    set -l editor_cmd (__get_editor_cmd)
+    or return 1
+
+    set -l editor_args $argv
+    if test (count $editor_args) -eq 0
+        set editor_args .
+    end
+
+    if set -ql _flag_wait
+        switch $editor_cmd
+            case code cursor
+                $editor_cmd --wait $editor_args
+            case '*'
+                $editor_cmd $editor_args
+        end
+    else
+        $editor_cmd $editor_args &>/dev/null &
+        disown
+    end
+end
+
+function __get_editor_cmd --description "Resolve the configured editor command"
+    set -l candidates $PREFERRED_EDITOR $FALLBACK_EDITOR $TERMINAL_EDITOR
+
+    for editor in $candidates
+        if test -n "$editor"; and command -q "$editor"
+            echo "$editor"
+            return 0
         end
     end
 
-    set -l editor_cmd (get-editor-cmd)
-
-    if test (count $argv) -eq 0
-        $editor_cmd . &>/dev/null &
-        disown
-    else
-        $editor_cmd $argv &>/dev/null &
-        disown
-    end
+    __error "No configured editor is available. Checked: "(string join ", " $candidates)
+    return 1
 end

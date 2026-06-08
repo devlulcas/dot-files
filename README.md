@@ -1,20 +1,29 @@
-# 🤓 DOT FILES
+# DOT FILES
 
 Some configs and scripts that I use.
 Enjoy!
 
-- Clone
+## Fresh Environment
 
 ```sh
 git clone git@github.com:devlulcas/dot-files.git ~/.dotfiles
+cd ~/.dotfiles
+fish ./setup.fish
 ```
 
-- Execute init to setup the config files
+Run a health check after opening a new shell:
 
 ```sh
-cd ~/.dotfiles
-fish ./init.sh
+dotfiles doctor
 ```
+
+Expected local directories:
+
+- `~/Work` for work projects, usually grouped by company.
+- `~/Coding` for personal projects.
+- `~/Applications` for AppImages, raw binaries, and manually installed tools.
+
+`init.fish` is kept as a compatibility wrapper around `setup.fish`.
 
 ## Based on
 

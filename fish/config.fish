@@ -10,11 +10,18 @@ source ~/.dotfiles/fish/alias.fish
 source ~/.dotfiles/fish/env.fish
 
 # Lib loader (order matters)
-source ~/.dotfiles/fish/lib/help-view.fish
+for f in ~/.dotfiles/fish/lib/*.fish
+    source $f
+end
 
-# Now source all other scripts that depend on show-help
+# Now source all other scripts that depend on shared helpers
 for f in ~/.dotfiles/fish/scripts/*.fish
     source $f
+end
+
+# Local machine overrides
+if test -e ~/.dotfiles.local.fish
+    source ~/.dotfiles.local.fish
 end
 
 # Greetings
